@@ -12,20 +12,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Khởi tạo âm thanh
-const sounds = {
-    "Chiêng Mừng Lúa Mới": new Howl({
-        src: ["https://assets.codepen.io/21542/howler-demo-bg-1.mp3"],
-        html5: true,
-        volume: 0.5
-    }),
-    "Chiêng Cầu Mưa": new Howl({
-        src: ["https://assets.codepen.io/21542/howler-demo-sound2.mp3"],
-        html5: true,
-        volume: 0.5
-    })
-};
-
 // DOM Elements
 const playSoundBtn = document.getElementById('play-sound');
 const festivalList = document.getElementById('festival-list');
