@@ -198,46 +198,206 @@ nav {
     background: #6e0000;
 }
 
-/* Festivals Section */
-.festivals-section {
-    padding: 5rem 2rem;
+/* Festival Section */
+.festival-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(to bottom, #fff 0%, #f9f3e9 100%);
+    position: relative;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.festival-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+.festival-header {
+    text-align: center;
+    margin-bottom: 4rem;
 }
 
-.festival-card {
+.festival-subtitle {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.date-badge, .location-badge {
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.date-badge {
+    background: #8B0000;
+    color: white;
+}
+
+.location-badge {
+    background: #FFD700;
+    color: #333;
+}
+
+/* Timeline */
+.festival-timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+.timeline-bar {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #8B0000, #FFD700);
+    z-index: 1;
+}
+
+.timeline-event {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.event-date {
     background: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #8B0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #8B0000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.event-card {
+    background: white;
+    padding: 2rem 1.5rem;
     border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    height: 100%;
     transition: transform 0.3s;
 }
 
-.festival-card:hover {
+.event-card:hover {
     transform: translateY(-10px);
 }
 
-.festival-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.event-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
-.festival-card h3 {
+.event-card h3 {
+    color: #8B0000;
+    margin-bottom: 1rem;
+}
+
+.activity-list {
+    text-align: left;
+    list-style-type: none;
+}
+
+.activity-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.activity-list li::before {
+    content: "•";
+    color: #FFD700;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+
+/* Gallery */
+.festival-gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    height: 400px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.main-image {
+    grid-row: span 2;
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    color: white;
     padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover .image-caption {
+    transform: translateY(0);
+}
+
+/* CTA Buttons */
+.festival-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.register-btn {
+    background: #8B0000;
+    color: white;
+}
+
+.outline {
+    background: transparent;
+    border: 2px solid #8B0000;
     color: #8B0000;
 }
 
-.festival-card p {
-    padding: 0 1rem 1rem;
-    color: #666;
+/* Responsive */
+@media (max-width: 768px) {
+    .festival-timeline {
+        grid-template-columns: 1fr;
+    }
+    
+    .festival-gallery {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .festival-cta {
+        flex-direction: column;
+    }
 }
 
 /* Footer */
