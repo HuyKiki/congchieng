@@ -283,3 +283,33 @@ document.addEventListener('DOMContentLoaded', () => {
     loadFestivals();
     init3DViewer();
 });
+
+// Thêm hiệu ứng timeline khi scroll
+gsap.utils.toArray(".timeline-event").forEach((event, i) => {
+    gsap.from(event, {
+        scrollTrigger: {
+            trigger: event,
+            start: "top 80%",
+            toggleActions: "play none none none"
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        delay: i * 0.2,
+        ease: "back.out(1)"
+    });
+});
+
+// Hiệu ứng gallery
+gsap.from(".gallery-item", {
+    scrollTrigger: {
+        trigger: ".festival-gallery",
+        start: "top 70%",
+        toggleActions: "play none none none"
+    },
+    opacity: 0,
+    y: 50,
+    stagger: 0.2,
+    duration: 0.8,
+    ease: "power2.out"
+});
