@@ -9,15 +9,17 @@
 body {
     background-color: #f5f5f5;
     color: #333;
+    overflow-x: hidden;
 }
 
 /* Header */
 header {
-    background-color: #8B0000; /* Màu đỏ đất */
+    background-color: #8B0000;
     padding: 1rem;
     position: fixed;
     width: 100%;
     z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 nav {
@@ -25,11 +27,14 @@ nav {
     justify-content: space-between;
     align-items: center;
     color: white;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logo {
     font-weight: bold;
     font-size: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .nav-links {
@@ -44,45 +49,251 @@ nav {
 .nav-links a {
     color: white;
     text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #FFD700;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    transition: all 0.3s ease;
 }
 
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1566438480900-0609be27a4be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
+    padding-top: 80px;
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .cta-button {
-    padding: 0.8rem 2rem;
-    background: #FFD700; /* Màu vàng nghệ */
+    padding: 1rem 2.5rem;
+    background: #FFD700;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     font-weight: bold;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cta-button:hover {
     background: #e6c200;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Mobile Responsive */
+/* Sections */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #8B0000;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: #FFD700;
+    margin: 0.5rem auto;
+}
+
+/* Heritage Section */
+.heritage-section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}
+
+.timeline-item {
+    flex: 1;
+    min-width: 250px;
+    margin: 1rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.5s ease;
+}
+
+.timeline-item h3 {
+    color: #8B0000;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* 3D Model Section */
+.model-section {
+    padding: 5rem 2rem;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+#3d-container {
+    width: 100%;
+    height: 500px;
+    margin: 2rem auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.controls {
+    margin-top: 2rem;
+}
+
+.controls button {
+    padding: 0.8rem 1.5rem;
+    margin: 0 0.5rem;
+    background: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.controls button:hover {
+    background: #6e0000;
+}
+
+/* Festivals Section */
+.festivals-section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.festival-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.festival-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.festival-card:hover {
+    transform: translateY(-10px);
+}
+
+.festival-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.festival-card h3 {
+    padding: 1rem;
+    color: #8B0000;
+}
+
+.festival-card p {
+    padding: 0 1rem 1rem;
+    color: #666;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
+        position: absolute;
+        right: 0;
+        top: 80px;
+        background: #8B0000;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        clip-path: circle(0px at 90% -10%);
+        transition: all 0.5s ease-out;
     }
+    
+    .nav-links.active {
+        clip-path: circle(1000px at 90% -10%);
+    }
+    
+    .nav-links li {
+        margin: 1rem 0;
+    }
+    
     .burger {
         display: block;
-        cursor: pointer;
     }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .timeline {
+        flex-direction: column;
+    }
+    
+    #3d-container {
+        height: 300px;
+    }
+}
+
+/* Animation Classes */
+.show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
