@@ -237,20 +237,22 @@ nav {
 
 /* Timeline */
 .festival-timeline {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
     gap: 2rem;
     position: relative;
     margin-bottom: 4rem;
+    flex-wrap: wrap; /* Xuống dòng nếu không đủ chỗ */
 }
 
 .timeline-bar {
     position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    width: 80%;
     height: 3px;
     background: linear-gradient(to right, #8B0000, #FFD700);
+    transform: translate(-50%, -50%);
     z-index: 1;
 }
 
@@ -258,12 +260,14 @@ nav {
     position: relative;
     z-index: 2;
     text-align: center;
+    width: 280px; /* Cố định chiều rộng */
+    margin-bottom: 2rem; /* Khoảng cách khi xuống dòng */
 }
 
 .event-date {
     background: white;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 3px solid #8B0000;
     display: flex;
@@ -278,75 +282,59 @@ nav {
 
 .event-card {
     background: white;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     height: 100%;
     transition: transform 0.3s;
 }
 
-.event-card:hover {
-    transform: translateY(-10px);
-}
-
-.event-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.event-card h3 {
-    color: #8B0000;
-    margin-bottom: 1rem;
-}
-
-.activity-list {
-    text-align: left;
-    list-style-type: none;
-}
-
-.activity-list li {
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.activity-list li::before {
-    content: "•";
-    color: #FFD700;
-    font-size: 1.5rem;
-    position: absolute;
-    left: 0;
-    top: -3px;
+/* Responsive */
+@media (max-width: 992px) {
+    .festival-timeline {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .timeline-bar {
+        top: 0;
+        left: 50%;
+        width: 3px;
+        height: 80%;
+        transform: translateX(-50%);
+    }
+    
+    .timeline-event {
+        width: 100%;
+        max-width: 350px;
+    }
 }
 
 /* Gallery */
 .festival-gallery {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr); /* 3 cột bằng nhau */
     gap: 1rem;
     margin-bottom: 3rem;
-    height: 400px;
 }
 
 .gallery-item {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
+    aspect-ratio: 1/1; /* Tỉ lệ vuông 1:1 */
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Đảm bảo hình lấp đầy không bị méo */
     transition: transform 0.5s;
 }
 
+/* Giữ nguyên các hiệu ứng hover */
 .gallery-item:hover img {
     transform: scale(1.05);
-}
-
-.main-image {
-    grid-row: span 2;
 }
 
 .image-caption {
@@ -363,6 +351,17 @@ nav {
 
 .gallery-item:hover .image-caption {
     transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .festival-gallery {
+        grid-template-columns: 1fr; /* 1 cột trên mobile */
+    }
+    
+    .gallery-item {
+        aspect-ratio: 16/9; /* Tỉ lệ ngang trên mobile */
+    }
 }
 
 /* CTA Buttons */
