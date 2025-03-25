@@ -3,45 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khám Phá Cồng Chiêng Tây Nguyên</title>
+    <title>Khám Phá Cồng Chiêng Tây Nguyên của 10A</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
+    <!-- Thêm GSAP cho animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <!-- Thêm Three.js cho 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- Thêm Howler.js cho âm thanh -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <!-- Thêm Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">CỒNG CHIÊNG TÂY NGUYÊN</div>
+            <div class="logo">CỒNG CHIÊNG TÂY NGUYÊN 100% 10A</div>
             <ul class="nav-links">
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Di sản</a></li>
-                <li><a href="#">Âm thanh</a></li>
-                <li><a href="#">Lễ hội</a></li>
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#heritage">Di sản</a></li>
+                <li><a href="#3d-view">3D Cồng Chiêng</a></li>
+                <li><a href="#festivals">Lễ hội</a></li>
             </ul>
             <div class="burger">
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
             </div>
-            <div class="audio-controls">
-    <button onclick="sounds['Chiêng Mừng Lúa Mới'].play()">Play</button>
-    <button onclick="sounds['Chiêng Mừng Lúa Mới'].pause()">Pause</button>
-</div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="hero-content">
             <h1>LINH HỒN CỦA ĐẠI NGÀN</h1>
             <p>Khám phá di sản văn hóa phi vật thể UNESCO</p>
-            <button class="cta-button">NGHE THỬ ÂM THANH</button>
+            <button id="play-sound" class="cta-button">NGHE THỬ ÂM THANH</button>
         </div>
+    </section>
+
+    <!-- Heritage Section -->
+    <section id="heritage" class="heritage-section">
+        <h2 class="section-title">DI SẢN VĂN HÓA</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>2005</h3>
+                <p>Cồng chiêng Tây Nguyên được UNESCO công nhận là Kiệt tác truyền khẩu và phi vật thể nhân loại</p>
+            </div>
+            <div class="timeline-item">
+                <h3>54 Dân tộc</h3>
+                <p>Hiện diện trong không gian văn hóa cồng chiêng</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Hơn 1000 bộ</h3>
+                <p>Cồng chiêng đang được lưu giữ tại Tây Nguyên</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Model Section -->
+    <section id="3d-view" class="model-section">
+        <h2 class="section-title">TRẢI NGHIỆM 3D CỒNG CHIÊNG</h2>
+        <div id="3d-container"></div>
+        <div class="controls">
+            <button id="rotate-btn">Xoay Tự động</button>
+            <button id="reset-btn">Đặt lại</button>
+        </div>
+    </section>
+
+    <!-- Festivals Section -->
+    <section id="festivals" class="festivals-section">
+        <h2 class="section-title">LỄ HỘI CỒNG CHIÊNG</h2>
+        <div id="festival-list" class="festival-grid"></div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2023 - Bảo tồn văn hóa cồng chiêng</p>
+        <p>© 2125 - Bảo tồn văn hóa cồng chiêng Tây Nguyên</p>
     </footer>
 
     <script src="script.js"></script>
