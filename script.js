@@ -300,6 +300,28 @@ gsap.utils.toArray(".timeline-event").forEach((event, i) => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    // Thêm hiệu ứng khi scroll đến
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    // Thiết lập trạng thái ban đầu
+    timelineItems.forEach(item => {
+        item.style.opacity = 0;
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'all 0.6s ease-out';
+        observer.observe(item);
+    });
+});
+
 // Hiệu ứng gallery
 gsap.from(".gallery-item", {
     scrollTrigger: {
