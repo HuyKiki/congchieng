@@ -192,6 +192,80 @@ function init3DViewer() {
     
     const gong = createGong();
     scene.add(gong);
+
+    // Cải tiến hàm createGong
+const createGong = (type = 'standard') => {
+    const group = new THREE.Group();
+    
+    // Base shape with more details
+    const geometry = new THREE.TorusGeometry(1, 0.2, 32, 100);
+    const material = new THREE.MeshStandardMaterial({ 
+        color: 0xcd7f32,
+        metalness: 0.95,
+        roughness: 0.25,
+        normalMap: new THREE.TextureLoader().load('textures/metal_normal.jpg'),
+        envMap: new THREE.CubeTextureLoader().load([
+            'textures/env/px.jpg', 'textures/env/nx.jpg',
+            'textures/env/py.jpg', 'textures/env/ny.jpg',
+            'textures/env/pz.jpg', 'textures/env/nz.jpg'
+        ])
+    });
+    
+    // Add engravings
+    const engravings = new THREE.Group();
+    // ... code tạo hoa văn ...
+    group.add(engravings);
+    
+    // Improved knob with more details
+    const knobGeometry = new THREE.SphereGeometry(0.3, 32, 32);
+    knobGeometry.scale(1, 0.7, 1); // Make it slightly flattened
+    
+    // Hanging rope with physics
+    const rope = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.04, 0.04, 1.5, 8),
+        new THREE.MeshStandardMaterial({ color: 0x8B4513 })
+    );
+    rope.position.y = 1.8;
+    
+    // Add click interaction
+    group.userData = { type: type, sound: 'gong_' + type };
+    group.children.forEach(child => {
+        child.userData = group.userData;
+    });
+    
+    return group;
+};
+
+// Thêm sự kiện click
+function setupInteraction() {
+    renderer.domElement.addEventListener('click', (event) => {
+        // Raycasting để phát hiện click
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(scene.children, true);
+        
+        if (intersects.length > 0) {
+            const obj = intersects[0].object;
+            if (obj.userData && obj.userData.sound) {
+                // Phát âm thanh tương ứng
+                playSound(obj.userData.sound);
+                
+                // Hiệu ứng animation khi gõ
+                gsap.to(obj.position, {
+                    y: obj.position.y - 0.05,
+                    duration: 0.1,
+                    yoyo: true,
+                    repeat: 1
+                });
+            }
+        }
+    });
+}
     
     // Xử lý resize
     window.addEventListener('resize', () => {
